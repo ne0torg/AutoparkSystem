@@ -1,6 +1,8 @@
 package com.example.autoparksystem.controllers;
 
+import com.example.autoparksystem.model.Cars;
 import com.example.autoparksystem.model.Routes;
+import com.example.autoparksystem.repos.CarsRepo;
 import com.example.autoparksystem.repos.RoutesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,9 @@ public class MainController {
 
     @Autowired
     private RoutesRepo routesRepo;
+
+    @Autowired
+    private CarsRepo carsRepo;
 
     @GetMapping("/")
     public String mainPage(){ return "redirect:/routes"; }
@@ -48,5 +53,31 @@ public class MainController {
         routesRepo.save(newRoute);
 
         return "redirect:/routes";
+    }
+
+    @GetMapping("/cars")
+    public String cars(Map<String, Object> model){
+
+        model.put("listCars", carsRepo.findAll());
+        return "cars";
+    }
+
+    @GetMapping("/addCar")
+    public String addCarForm(){
+        return "addCar";
+    }
+
+    @PostMapping("/addCar")
+    public String addCar(
+                            @RequestParam(value = "carNumber") String carNumber,
+                            @RequestParam(value = "carModel") String carModel) {
+        Cars newCar = new Cars();
+        newCar.setCarModel(carModel);
+        newCar.setCarNumber(carNumber);
+
+        carsRepo.save(newCar);
+
+        return "redirect:/cars";
+
     }
 }

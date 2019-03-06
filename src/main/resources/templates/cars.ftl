@@ -29,29 +29,23 @@
 </nav>
 <div class="main-content">
 
-    <a href="/addRoute">Новый маршрут</a>
+    <a href="/addCar">Новый автомобиль</a>
     <table class="table table-hover">
         <thead class="thead-light">
         <tr>
             <th scope="col">id</th>
-            <th scope="col">Номер маршрута</th>
-            <th scope="col">Начало маршрута</th>
-            <th scope="col">Конец маршрута</th>
-            <th scope="col">Стоимость поездки<th>
-            <th scope="col">Дневной план<th>
+            <th scope="col">Номер автомобиля</th>
+            <th scope="col">Марка автомобиля</th>
         </tr>
         </thead>
         <tbody>
-            <#list listRoutes as route>
-                <tr>
-                    <th scope="col">${route.id}</th>
-                    <th scope="col">${route.routeNumber}</th>
-                    <th scope="col">${route.routeStart}</th>
-                    <th scope="col">${route.routeFinish}</th>
-                    <th scope="col">${route.routeDayPrice}</th>
-                    <th scope="col">${route.routeDayPlan}</th>
-                </tr>
-            </#list>
+        <#list listCars as car>
+            <tr>
+                <th scope="col">${car.id}</th>
+                <th scope="col">${car.carNumber}</th>
+                <th scope="col">${car.carModel}</th>
+            </tr>
+        </#list>
         </tbody>
     </table>
 </div>
